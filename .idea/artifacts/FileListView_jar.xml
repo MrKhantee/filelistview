@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FileListView:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/FileListView_jar</output-path>
+    <root id="archive" name="FileListView.jar">
+      <element id="module-output" name="FileListView" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/scala/lib/jline-2.11.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/scala/lib/config-1.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/scala/lib/scala-library.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/scala/lib/scala-reflect.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/scala/lib/scala-compiler.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/scala/lib/scala-actors-2.11.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/scala/lib/scala-xml_2.11-1.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/scala/lib/akka-actor_2.11-2.3.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/scala/lib/scala-swing_2.11-1.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/scala/lib/scala-actors-migration_2.11-1.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/scala/lib/scala-parser-combinators_2.11-1.0.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/scala/lib/scala-continuations-library_2.11-1.0.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files (x86)/scala/lib/scala-continuations-plugin_2.11.1-1.0.2.jar" path-in-jar="/" />
+      <element id="dir-copy" path="C:/Program Files (x86)/scala/api" />
+    </root>
+  </artifact>
+</component>
