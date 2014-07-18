@@ -4,6 +4,7 @@ package com.jcw.andriod.fileListView;/*
  */
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -15,17 +16,18 @@ public class FileListAdapter extends BaseAdapter {
 	File[] files;
 
 	public FileListAdapter(Context context, File[] files) {
-
+		this.files = files;
+		this.context = context;
 	}
 
 	@Override
 	public int getCount() {
-		return 0;
+		return files.length;
 	}
 
 	@Override
 	public Object getItem(int location) {
-		return null;
+		return files[location];
 	}
 
 	@Override
@@ -34,7 +36,11 @@ public class FileListAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int index, View view, ViewGroup viewGroup) {
-		
+	public View getView(int index, View view, ViewGroup parent) {
+		LayoutInflater inflater = LayoutInflater.from(context);
+		FileListItemView rowView = new FileListItemView(context);
+
+		rowView.setFile(files[index]);
+		return rowView;
 	}
 }

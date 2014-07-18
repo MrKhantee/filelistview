@@ -8,7 +8,6 @@ import android.os.Environment;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -53,7 +52,7 @@ public class FileListView extends ListView {
 		this.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> adapterView, View view, int index, long id) {
-				baseDirectory = baseDirectory + "/" + ((FileListItem)view).getRepresentedDir();
+				baseDirectory = new File(baseDirectory + "/" + ((FileListItemView) view).getRepresentedDir());
 				if (baseDirectory.isFile()) {
 					if (listener != null) {
 						listener.fileSelected(baseDirectory);
@@ -123,6 +122,9 @@ public class FileListView extends ListView {
 					return ListUtils.sortByDate(list);
 				case NewestOldest:
 					return ListUtils.sortNewestToOldest(list);
+				default:
+					throw new Error("If you add a new type to sorting mode, you need to update the" +
+							" SortingMode.sort method to handle this new option");
 			}
 		}
 	}
