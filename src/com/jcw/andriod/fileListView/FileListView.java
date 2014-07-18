@@ -1,6 +1,8 @@
-package com.jcw.andriod.fileListView;/*
+package com.jcw.andriod.fileListView;
+
+/*
  * Author - Woodruff
- * 
+ * todo -- add up option as top list item
  */
 
 import android.content.Context;
@@ -112,6 +114,10 @@ public class FileListView extends ListView {
 
 	public void setSortingMode(SortingMode newMode) {
 		this.sortingMode = newMode;
+	}
+
+	public void refresh() {
+		setAdapter(getCurrentAdapter());
 	}
 
 	public void setFileSelectedListener(FileSelectListener listener) {
