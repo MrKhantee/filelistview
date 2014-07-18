@@ -3,6 +3,7 @@ This is a file selecting list view for Android.
 IMPORTANT: I highly recommend that you use the attached .jar as an attachable library to your project unless you already have the Scala compiler added to your project, as this project uses a few .scala files, so may well be incompatible with many projects in un-compiled form.
 
 Usage:
+
     FileListView:
         This is a simple adaptation of the basic Android ListView to work as a file explorer. If you wish to heavily customise the UI of your file then this is probably what you should use.
         Important Fields: 
@@ -20,3 +21,12 @@ Usage:
     FileSaveView:
         This is what I recommend using as a view if you want to save (a potentially new file) to the file system. Although it extends FileOpenView, not all of the methods are implemented, as some are not relevant. Those irrelevant methods throw exceptions when called
         Important Fields
+        
+
+Contributing:
+    I will eagerly welcome all contributions. However, it is important to note that this project uses a little bit of scala code. This means that you will need to have the Scala compiler installed and linked to this project.* That said, you do not need to know any Scala to make contributions to this project -- you can call its method's just like you would any Java method.
+    
+Current Todo List:
+    More Documentation (both in this file and around each method)
+    
+* Intellij users might be spared of this setup because I have included the .idea folder in the repo, so any config settings stored there should be enabled by default
