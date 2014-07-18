@@ -26,6 +26,9 @@ Usage:
 Contributing:
     I will eagerly welcome all contributions. However, it is important to note that this project uses a little bit of scala code. This means that you will need to have the Scala compiler installed and linked to this project.* That said, you do not need to know any Scala to make contributions to this project -- you can call its method's just like you would any Java method.
     
+Important note on compiling:
+    Due to the presence of the Scala libraries,  please make sure that proguard is enabled to stop the compilation of unneeded files and stop the bloating of the .jar 
+    
 Current Todo List:
     More Documentation (both in this file and around each method)
     
