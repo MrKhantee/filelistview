@@ -29,6 +29,10 @@ public class FileListView extends ListView {
 	//default mode is alphabetical
 	public SortingMode sortingMode = SortingMode.Alphabetical;
 
+	//when true, only files that are actually directories will be shown
+	public boolean directoriesOnly = false;
+
+
 	private FileSelectListener listener;
 
 	public FileListView(Context context) {
@@ -74,15 +78,24 @@ public class FileListView extends ListView {
 		//gets the list of files
 		File[] files = baseDirectory.listFiles();
 		//filters out unwanted files
-		File[] filteredFiles = ListUtils.search(
-				ListUtils.filterExtensions(files, fileExtensions), searchText);
+		//first get rid of the directories
+		File[] filteredFiles = ListUtils.directoriesOnly(
+				//then anything that doesn't contain the search term
+				ListUtils.search(
+				//finally anything that doesn't match the specified extensions
+				ListUtils.filterExtensions(files, fileExtensions),
+				searchText), directoriesOnly);
 		//sorts the remaining files accoring to current mode
 		File[] sortedFiles = this.sortingMode.sort(filteredFiles);
 		return new FileListAdapter(getContext(), sortedFiles);
 	}
 
 	public void loadLastDir() {
-		//todo -- sets the baseDirectory to the last dir that this accessed
+		File newFile = baseDirectory.getParentFile();
+		if (newFile == null) //this is the top directory -- no parent
+			return;
+
+		baseDirectory = newFile;
 	}
 
 	public void setExtensions(String[] extensions) {
@@ -91,6 +104,10 @@ public class FileListView extends ListView {
 
 	public void searchWith(String text) {
 		this.searchText = text;
+	}
+
+	public void setDirectoriesOnly(boolean directoriesOnly) {
+		this.directoriesOnly = directoriesOnly;
 	}
 
 	public void setSortingMode(SortingMode newMode) {

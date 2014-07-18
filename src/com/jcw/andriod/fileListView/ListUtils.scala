@@ -26,5 +26,6 @@ object ListUtils {
   def sortNewestToOldest(files: Array[File]): Array[File] =
     sortByDate(files).reverse
 
-
+  def directoriesOnly(files: Array[File], directories: Boolean): Array[File] =
+    files filter (_.isDirectory)
 }
