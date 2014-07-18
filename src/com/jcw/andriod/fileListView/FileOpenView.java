@@ -35,9 +35,9 @@ public class FileOpenView extends RelativeLayout {
 	public boolean folderSelectMode = false;
 
 	//edittext for searching through the current displayed files
-	private EditText search;
+	protected EditText search;
 	//button for selecting the current folder
-	private Button folderSelect;
+	protected Button folderSelect;
 	//the file view. Public so changes
 	//can be made to it (sorting order etc..)
 	public FileListView listView;
@@ -57,7 +57,7 @@ public class FileOpenView extends RelativeLayout {
 		init();
 	}
 
-	private void init() {
+	protected void init() {
 		LayoutInflater inflater = LayoutInflater.from(getContext());
 		inflater.inflate(R.layout.file_open_view, FileOpenView.this);
 
@@ -69,6 +69,10 @@ public class FileOpenView extends RelativeLayout {
 		setSearchEnabled(searchEnabled);
 		setFolderSelectEnabled(folderSelectMode);
 
+		setListeners();
+	}
+
+	protected void setListeners() {
 		listView.setFileSelectedListener(new FileListView.FileSelectListener() {
 			@Override
 			public void fileSelected(File selected) {
