@@ -1,6 +1,4 @@
-This is a file selecting list view for Android.
-
-IMPORTANT: I highly recommend that you use the attached .jar as an attachable library to your project unless you already have the Scala compiler added to your project, as this project uses a few .scala files, so may well be incompatible with many projects in un-compiled form.
+This is a file selecting list view for Android, a few other views are also included to make the use of the library easier.
 
 Usage:
 
@@ -17,19 +15,17 @@ Usage:
     FileOpenView:
         This is what I would recommend using if you want to select an already created file. It is a set of views that includes the FileListView, an EditText to enable searching through the files and a Button to enable the selection of whole folders. 
         Important Fields: 
+            todo -- fill this in
         
     FileSaveView:
         This is what I recommend using as a view if you want to save (a potentially new file) to the file system. Although it extends FileOpenView, not all of the methods are implemented, as some are not relevant. Those irrelevant methods throw exceptions when called
-        Important Fields
+        Important Fields:
+            todo -- fill this in
         
 
 Contributing:
-    I will eagerly welcome all contributions. However, it is important to note that this project uses a little bit of scala code. This means that you will need to have the Scala compiler installed and linked to this project.* That said, you do not need to know any Scala to make contributions to this project -- you can call its method's just like you would any Java method.
-    
-Important note on compiling:
-    Due to the presence of the Scala libraries,  please make sure that proguard is enabled to stop the compilation of unneeded files and stop the bloating of the .jar 
+    I will eagerly welcome all contributions. 
     
 Current Todo List:
     More Documentation (both in this file and around each method)
-    
-* Intellij users might be spared of this setup because I have included the .idea folder in the repo, so any config settings stored there should be enabled by default
+    File options -- possibly a context menu to open on long press of FileListViewItem to enable things like copying, moving, renaming etc..
