@@ -68,7 +68,10 @@ public class ListUtils {
 		return fileClone;
 	}
 
-	public File[] directoriesOnly(File[] files) {
+	public static File[] directoriesOnly(File[] files, boolean directoriesOnly) {
+		if (!directoriesOnly)
+			return files;
+		
 		List<File> results = new ArrayList<File>();
 		for (File file : files) {
 			if (file.isDirectory()) {
@@ -78,7 +81,7 @@ public class ListUtils {
 		return results.toArray(new File[0]);
 	}
 
-	public File[] sortByDate(File[] files) {
+	public static File[] sortByDate(File[] files) {
 		//also clone the file here, for the same reason described above
 		File[] filesClone = files.clone();
 		Comparator<File> comparator = new Comparator<File>() {
@@ -91,7 +94,7 @@ public class ListUtils {
 		return filesClone;
 	}
 
-	public  File[] sortNewestOldest(File[] files) {
+	public static File[] sortNewestOldest(File[] files) {
 		List<File> tempList = Arrays.asList(sortByDate(files.clone()));
 		Collections.reverse(tempList);
 		return tempList.toArray(new File[0]);
