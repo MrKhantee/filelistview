@@ -19,16 +19,21 @@ Usage:
     FileOpenView:
         This is what I would recommend using if you want to select an already created file. It is a set of views that includes the FileListView, an EditText to enable searching through the files and a Button to enable the selection of whole folders. 
         Important Fields: 
-            todo -- fill this in
+            setSearchEnabled(boolean enabled) - this method lets you set whether a search bar will appear at that top of the view to let you search through the current selected directory. Default: true
+            setFolderSelectEnabled(boolean enabled) - when set to true, a button will appear next to the search bar to enable the selection of the current folder (which will fire the FileSelectedListener upon being pressed). Default: false
+            setFileSelectedListener(FileSelectedListener listener) - this is a listener for when a file is selected... see FileListView.setFileSelectedListener(..)
         
     FileSaveView:
         This is what I recommend using as a view if you want to save (a potentially new file) to the file system. Although it extends FileOpenView, not all of the methods are implemented, as some are not relevant. Those irrelevant methods throw exceptions when called
         Important Fields:
-            todo -- fill this in
+            enableOverwriteWarning(boolean enabled) - when set to true, a warning dialog will be displayed before the selection listener is fired to make sure the user knows they are replacing a file. When false, this dialog will not be shown. Default: true
+            setFileSelectedListener(FileSelectedListener listener) - this is fired when the Save File button is pressed, and sends the name typed into the EditText and the base directory back as a single file. 
+            setSearchEnabled(boolean enabled) - throws a NoSuchMethodException -- do not use
+            setFolderSelectEnabled(boolean enabled - throws a NoSuchMethodException -- do not use
         
 
 Contributing:
-    I will eagerly welcome all contributions, if you are looking for something to contribute to, see the todo list below
+    I will eagerly welcome all contributions, if you are looking for something to contribute to, see the todo list below.
     
 Current Todo List:
     More Documentation (both in this file and around each method)
