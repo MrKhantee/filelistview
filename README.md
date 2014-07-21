@@ -1,3 +1,7 @@
+IMPORTANT -- Please DO NOT USE THESE FILES yet -- I have not even started the process of debugging it,
+so it is likely to crash (on github for testing reasons only).
+
+
 This is a file selecting list view for Android, a few other views are also included to make the use of the library easier.
 
 Usage:
