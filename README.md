@@ -24,7 +24,7 @@ Usage:
         
 
 Contributing:
-    I will eagerly welcome all contributions. 
+    I will eagerly welcome all contributions, if you are looking for something to contribute to, see the todo list below
     
 Current Todo List:
     More Documentation (both in this file and around each method)
