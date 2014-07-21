@@ -19,7 +19,6 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import scala.NotImplementedError;
 
 import java.io.File;
 
@@ -121,13 +120,13 @@ public class FileSaveView extends FileOpenView {
 
 	@Override
 	public void setFolderSelectEnabled(boolean enabled) {
-		throw new NotImplementedError("There is no folder select button to hide in a " +
+		throw new NoSuchMethodError("There is no folder select button to hide in a " +
 				"FileSaveView");
 	}
 
 	@Override
 	public void setSearchEnabled(boolean enabled) {
-		throw new NotImplementedError("There is no search bar to hide in a " +
+		throw new NoSuchMethodError("There is no search bar to hide in a " +
 				"FileSaveView");
 	}
 
