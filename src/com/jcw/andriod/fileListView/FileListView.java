@@ -144,7 +144,7 @@ public class FileListView extends ListView {
 				case OldestNewest:
 					return ListUtils.sortByDate(list);
 				case NewestOldest:
-					return ListUtils.sortNewestToOldest(list);
+					return ListUtils.sortNewestOldest(list);
 				default:
 					throw new Error("If you add a new type to sorting mode, you need to update the" +
 							" SortingMode.sort method to handle this new option");
