@@ -59,7 +59,7 @@ public class FileListView extends ListView {
 			@Override
 			public void onItemClick(AdapterView<?> adapterView, View view, int index, long id) {
 				baseDirectory = new File(baseDirectory + "/" + ((FileListItemView) view).getRepresentedDir());
-				if (baseDirectory.isFile()) {
+				if (!baseDirectory.isDirectory()) {
 					if (listener != null) {
 						listener.fileSelected(baseDirectory);
 					}
