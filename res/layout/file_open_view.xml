@@ -9,6 +9,7 @@
 			android:id="@+id/container">
 		<Button
 			android:layout_width="wrap_content"
+			android:textSize="9dp"
 			android:layout_height="wrap_content"
 			android:id="@+id/folderSelectButton"
 			android:text="@string/selectFolder"
@@ -16,6 +17,7 @@
 		<EditText
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:textSize="9dp"
 			android:id="@+id/searchBar"
 			android:hint="@string/search"
 			android:layout_toLeftOf="@id/folderSelectButton"/>
