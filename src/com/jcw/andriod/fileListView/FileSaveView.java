@@ -23,8 +23,8 @@ import android.widget.EditText;
 import java.io.File;
 
 public class FileSaveView extends FileOpenView {
-	private EditText fileName;
-	private Button confirm;
+	public EditText fileName;
+	public Button confirm;
 
 	private FileListView.FileSelectListener listener;
 

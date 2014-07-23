@@ -35,9 +35,9 @@ public class FileOpenView extends RelativeLayout {
 	public boolean folderSelectMode = false;
 
 	//edittext for searching through the current displayed files
-	protected EditText search;
+	public EditText search;
 	//button for selecting the current folder
-	protected Button folderSelect;
+	public Button folderSelect;
 	//the file view. Public so changes
 	//can be made to it (sorting order etc..)
 	public FileListView listView;
