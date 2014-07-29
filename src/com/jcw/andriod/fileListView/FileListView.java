@@ -14,6 +14,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import java.io.File;
+import android.graphics.*;
 
 public class FileListView extends ListView {
 	//feel free to change this to any existing directory
@@ -55,9 +56,19 @@ public class FileListView extends ListView {
 	private void init() {
 		final ListAdapter adapter = getCurrentAdapter();
 		this.setAdapter(adapter);
+		this.setCacheColorHint(Color.TRANSPARENT);
 		this.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> adapterView, View view, int index, long id) {
+				if (index == 0) {//this is the up item
+					File up = baseDirectory.getParentFile();
+					if (up == null || up.listFiles() == null) {//already top level directory
+						return;
+					} else {
+						baseDirectory = up;
+						setAdapter(getCurrentAdapter());
+					}
+				}
 				baseDirectory = new File(baseDirectory + "/" + ((FileListItemView) view).getRepresentedDir());
 				if (!baseDirectory.isDirectory()) {
 					if (listener != null) {
@@ -89,7 +100,13 @@ public class FileListView extends ListView {
 				searchText), directoriesOnly);
 		//sorts the remaining files accoring to current mode
 		File[] sortedFiles = this.sortingMode.sort(filteredFiles);
-		return new FileListAdapter(getContext(), sortedFiles);
+		File[] upIncluded = new File[sortedFiles.length + 1];
+		upIncluded[0] = new File("...");
+		
+		for (int i = 0; i < sortedFiles.length; i++) {
+			upIncluded[i + 1] = sortedFiles[i];
+		}
+		return new FileListAdapter(getContext(), upIncluded);
 	}
 
 	public void loadLastDir() {
