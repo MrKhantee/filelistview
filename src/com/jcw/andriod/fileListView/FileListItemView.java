@@ -69,7 +69,6 @@ public class FileListItemView extends RelativeLayout {
 	public void setFile(File file) {
 		setFileName(file.getName());
 		setMetadata(getMetadataText(file));
-		setIcon(getPictureId(file));
 	}
 
 
@@ -83,20 +82,6 @@ public class FileListItemView extends RelativeLayout {
 			return formatBytes(file.length());
 		} else {
 			return "";
-		}
-	}
-
-	/*
-	returns the res id of the icon that
-	should be displayed for this type of
-	file -- this is an area open to improvement
-	(with different icons for different file types
-	 */
-	private int getPictureId(File file) {
-		if (file.isDirectory()) {
-			return R.drawable.directory_icon;
-		} else {
-			return R.drawable.file_icon;
 		}
 	}
 

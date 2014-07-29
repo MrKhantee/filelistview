@@ -15,6 +15,6 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstance) {
 		super.onCreate(savedInstance);
 		setTheme(android.R.style.Theme_Holo_Light);
-		setContentView(new FileOpenView(getApplicationContext()));
+		setContentView(new FileListView(getApplicationContext()));
 	}
 }
