@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 import java.io.File;
 import android.graphics.*;
+import android.util.*;
 
 public class FileListView extends ListView {
 	//feel free to change this to any existing directory
@@ -68,12 +69,16 @@ public class FileListView extends ListView {
 						baseDirectory = up;
 						setAdapter(getCurrentAdapter());
 					}
+					return;
 				}
 				baseDirectory = new File(baseDirectory + "/" + ((FileListItemView) view).getRepresentedDir());
 				if (!baseDirectory.isDirectory()) {
 					if (listener != null) {
 						listener.fileSelected(baseDirectory);
 					}
+					//this is so the user can continue browsing with the same 
+					//instace even after they selected a file
+					baseDirectory = new File(baseDirectory.getParent());
 				} else {
 					//reset the adapter with a new directory
 					ListAdapter adapter = getCurrentAdapter();
