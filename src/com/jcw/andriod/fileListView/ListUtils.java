@@ -99,4 +99,19 @@ public class ListUtils {
 		Collections.reverse(tempList);
 		return tempList.toArray(new File[0]);
 	}
+	
+	public static File[] join(File[] f1, File[] f2) {
+		File[] result = new File[f1.length + f2.length];
+		List<File> combined = new ArrayList<File>();
+		
+		for (File file : f1) {
+			combined.add(file);
+		}
+		for (File file : f2) {
+			combined.add(file);
+		}
+		combined.toArray(result);
+		return result;
+	}
 }
+
