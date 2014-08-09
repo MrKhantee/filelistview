@@ -94,24 +94,31 @@ public class FileListView extends ListView {
 	 */
 	private ListAdapter getCurrentAdapter() {
 		//gets the list of files
-		File[] files = baseDirectory.listFiles();
+		File[] files = FileUtils.listFiles(baseDirectory);
+		File[] directories = FileUtils.listDirectories(baseDirectory);
 		//filters out unwanted files
 		//first get rid of the directories
+		File[] filteredFiles = filterSort(files);
+		File[] filteredDirectories = filterSort(directories);
+		File[] upIncluded = new File[filteredDirectories.length + 1];
+		upIncluded[0] = new File("...");
+		
+		for (int i = 0; i < filteredDirectories.length; i++) {
+			upIncluded[i + 1] = filteredDirectories[i];
+		}
+		File[] joined = ListUtils.join(upIncluded, filteredFiles);
+		return new FileListAdapter(getContext(), joined);
+	}
+	
+	private File[] filterSort(File[] files) {
 		File[] filteredFiles = ListUtils.directoriesOnly(
-				//then anything that doesn't contain the search term
-				ListUtils.search(
+			//then anything that doesn't contain the search term
+			ListUtils.search(
 				//finally anything that doesn't match the specified extensions
 				ListUtils.filterExtensions(files, fileExtensions),
 				searchText), directoriesOnly);
 		//sorts the remaining files accoring to current mode
-		File[] sortedFiles = this.sortingMode.sort(filteredFiles);
-		File[] upIncluded = new File[sortedFiles.length + 1];
-		upIncluded[0] = new File("...");
-		
-		for (int i = 0; i < sortedFiles.length; i++) {
-			upIncluded[i + 1] = sortedFiles[i];
-		}
-		return new FileListAdapter(getContext(), upIncluded);
+		return this.sortingMode.sort(filteredFiles);
 	}
 
 	public void loadLastDir() {
