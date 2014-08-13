@@ -23,8 +23,6 @@ import android.widget.EditText;
 import java.io.File;
 
 public class FileSaveView extends FileOpenView {
-	public EditText fileName;
-	public Button confirm;
 
 	private FileListView.FileSelectListener listener;
 
@@ -33,26 +31,23 @@ public class FileSaveView extends FileOpenView {
 
 	public FileSaveView(Context context) {
 		super(context);
-		init();
 	}
 
 	public FileSaveView(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		init();
 	}
 
 	public FileSaveView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
-		init();
 	}
 
 	@Override
 	protected void init() {
-		this.fileName = search;
-		this.confirm = folderSelect;
+		setSearchEnabled(false);
+		setFolderSelectEnabled(false);
 		super.init();
-		fileName.setHint(R.string.fileName);
-		confirm.setText(R.string.save);
+		search.setHint(R.string.fileName);
+		folderSelect.setText(R.string.save);
 	}
 
 	@Override
@@ -60,11 +55,11 @@ public class FileSaveView extends FileOpenView {
 		listView.setFileSelectedListener(new FileListView.FileSelectListener() {
 			@Override
 			public void fileSelected(File selected) {
-				fileName.setText(selected.getName());
+				search.setText(selected.getName());
 			}
 		});
 
-		fileName.addTextChangedListener(new TextWatcher() {
+		search.addTextChangedListener(new TextWatcher() {
 			@Override
 			public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 
@@ -82,15 +77,15 @@ public class FileSaveView extends FileOpenView {
 			}
 		});
 
-		confirm.setOnClickListener(new OnClickListener() {
+		folderSelect.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				//if the filename is empty, then the user needs to know
-				if (fileName.getText().toString().trim().equals("")){
-					fileName.setError(getContext().getResources().getString(R.string.fileNeedsName));
+				if (search.getText().toString().trim().equals("")){
+					search.setError(getContext().getResources().getString(R.string.fileNeedsName));
 					return;
 				}
-				final File file = new File(listView.baseDirectory + "/" + fileName.getText().toString());
+				final File file = new File(listView.baseDirectory + "/" + search.getText().toString());
 				if (file.exists() && showOverwriteWarning) {
 					AlertDialog.Builder b = new AlertDialog.Builder(getContext());
 					b.setTitle(R.string.fileAlreadyExists);
@@ -120,14 +115,16 @@ public class FileSaveView extends FileOpenView {
 
 	@Override
 	public void setFolderSelectEnabled(boolean enabled) {
-		throw new NoSuchMethodError("There is no folder select button to hide in a " +
-				"FileSaveView");
+	//	if (enabled)
+	//		throw new NoSuchMethodError("There is no folder select button to show in a " +
+	//				"FileSaveView");
 	}
 
 	@Override
 	public void setSearchEnabled(boolean enabled) {
-		throw new NoSuchMethodError("There is no search bar to hide in a " +
-				"FileSaveView");
+	//	if (enabled)
+	//		throw new NoSuchMethodError("There is no search bar to show in a " +
+	//			"FileSaveView");
 	}
 
 	public void enableOverwriteWarning(boolean enabled) {
