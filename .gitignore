@@ -7,5 +7,5 @@ bin/
 .idea/
 out/
 project.properties
-project-proguard.txt
+proguard-project.txt
 *.properties
