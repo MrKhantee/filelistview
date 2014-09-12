@@ -41,6 +41,7 @@ public class FileListAdapter extends BaseAdapter {
 		FileListItemView rowView = new FileListItemView(context);
 
 		rowView.setFile(files[index]);
+		rowView.resetPicture(rowView.getFullFile());
 		return rowView;
 	}
 }
