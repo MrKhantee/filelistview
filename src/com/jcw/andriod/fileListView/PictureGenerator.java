@@ -48,7 +48,7 @@ class PictureGenerator {
 	 * Hence, this SHOULD BE USED WITH
 	 * EXTREME CAUTION
 	 */
-	private void addIconAsync(final ImageView view) {
+	protected void addIconAsync(final ImageView view) {
 		final Bitmap icon = getIcon();
 		view.post(new Runnable() {
 			@Override
