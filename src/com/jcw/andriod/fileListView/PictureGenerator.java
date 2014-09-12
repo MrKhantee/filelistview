@@ -73,7 +73,8 @@ class PictureGenerator {
 
 	private enum FileExtension {
 		JPG(".jpg"),
-		PNG(".png");
+		PNG(".png"),
+		Other("");
 
 		protected String extension;
 
@@ -90,6 +91,8 @@ class PictureGenerator {
 				case PNG:
 				case JPG:
 					return getPictureIcon(file);
+				case Other:
+					return null;
 			}
 			return null;
 		}
@@ -105,12 +108,12 @@ class PictureGenerator {
 
 		public static FileExtension createExtension(String extension) {
 			String s = extension.toLowerCase();
-			if (s.equals(".jpg")) {
+			if (s.equals("jpg")) {
 				return JPG;
-			} else if (s.equals(".png")) {
+			} else if (s.equals("png")) {
 				return PNG;
 			} else {
-				return null;
+				return Other;
 			}
 		}
 	}
