@@ -98,8 +98,11 @@ public class FileListItemView extends RelativeLayout {
 	public void resetPicture(File thisFile) {
 		if (thisFile.isDirectory()) {
 			this.setIcon(R.drawable.directory_icon);
+		} else if (getRepresentedDir().toString().equals("...")) {
+			this.setIcon(R.drawable.directory_up);
 		} else {
-			PictureGenerator.addIconsAsync(new FileListItemView[] {this});
+				PictureGenerator generator = new PictureGenerator(this.file);
+				generator.addIconAsync(this.icon);
 		}
 	}
 
