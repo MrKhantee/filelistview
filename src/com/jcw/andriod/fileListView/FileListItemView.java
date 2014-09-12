@@ -71,6 +71,21 @@ public class FileListItemView extends RelativeLayout {
 		setMetadata(getMetadataText(file));
 	}
 
+	/*
+	 * If this is a type of file that has a picture
+	 * associated with it (i.e. a .jpg/png file)
+	 * then it will be shown as the picture.
+	 * Otherwise, the icon will not be changed
+	 */
+	public void resetPicture(File thisFile) {
+		if (thisFile.isDirectory()) {
+			this.setIcon(R.drawable.directory_icon);
+		} else {
+			PictureGenerator generator = new PictureGenerator(thisFile);
+			generator.addIconAsync(icon);
+		}
+	}
+
 
 	/*
 	returns by default the size of the file if the
