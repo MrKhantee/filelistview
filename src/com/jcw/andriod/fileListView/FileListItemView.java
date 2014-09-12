@@ -69,6 +69,7 @@ public class FileListItemView extends RelativeLayout {
 	public void setFile(File file) {
 		setFileName(file.getName());
 		setMetadata(getMetadataText(file));
+		resetPicture(file);
 	}
 
 	/*
