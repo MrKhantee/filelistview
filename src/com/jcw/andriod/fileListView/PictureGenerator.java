@@ -38,28 +38,45 @@ class PictureGenerator {
 	}
 
 	/*
-	 * Uses a thread to load the icon
-	 * and set it to the image view
-	 * passed as argument
+	 * This MUST be called within a thread
+	 *
+	 * This is private because
+	 * if it is called many times at
+	 * once then you run into out
+	 * of memory errors
+	 *
+	 * Hence, this SHOULD BE USED WITH
+	 * EXTREME CAUTION
 	 */
-	public void addIconAsync(final ImageView view) {
-		new Thread(new Runnable() {
+	private void addIconAsync(final ImageView view) {
+		final Bitmap icon = getIcon();
+		view.post(new Runnable() {
 			@Override
 			public void run() {
-				final Bitmap icon = getIcon();
-				view.post(new Runnable() {
-					@Override
-					public void run() {
-						if (icon == null) {
-							//the icon was not loaded here
-							view.setImageResource(R.drawable.file_icon);
-						} else {
-							view.setImageBitmap(icon);
-						}
-					}
-				});
+				if (icon == null) {
+					//the icon was not loaded here
+					view.setImageResource(R.drawable.file_icon);
+				} else {
+					view.setImageBitmap(icon);
+				}
 			}
-		}).start();
+		});
+	}
+
+	/*
+	 * This adds images to a series of views in
+	 * async fashion.
+	 */
+	public static void addIconsAsync(final FileListItemView[] items) {
+		Thread runnable = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				for (FileListItemView view : items) {
+					PictureGenerator generator = new PictureGenerator(view.getFullFile());
+					generator.addIconAsync(view.icon);
+				}
+			}
+		});
 	}
 
 	private String getExtension() {
