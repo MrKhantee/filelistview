@@ -21,6 +21,6 @@ public class MainActivity extends Activity {
 		setTheme(android.R.style.Theme_Holo_Light);
 		File parentDir = Environment.getExternalStorageDirectory();
 		Log.i("Files", Arrays.asList(FileUtils.listDirectories(parentDir)).toString());
-		setContentView(new FileListView(getApplicationContext()));
+		setContentView(new FileSaveView(getApplicationContext()));
 	}
 }
