@@ -63,8 +63,12 @@ class PictureGenerator {
 	}
 
 	private String getExtension() {
-		String[] delimited = file.getName().split(".");
-		return delimited[delimited.length].toLowerCase();
+		String[] delimited = file.getName().split("\\.");
+		if (delimited.length == 0) {
+			return "";
+		} else {
+			return delimited[delimited.length - 1].toLowerCase();
+		}
 	}
 
 	private enum FileExtension {
