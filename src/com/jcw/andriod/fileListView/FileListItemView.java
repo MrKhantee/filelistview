@@ -13,9 +13,13 @@ import android.widget.TextView;
 import java.io.File;
 
 public class FileListItemView extends RelativeLayout {
-	private TextView fileName;
-	private TextView metadata;
-	private ImageView icon;
+	protected TextView fileName;
+	protected TextView metadata;
+	protected ImageView icon;
+
+	//this is a risky field to have
+	// but it is needed for use in icon generation
+	private File file = null;
 
 
 	public FileListItemView(Context context) {
@@ -66,10 +70,23 @@ public class FileListItemView extends RelativeLayout {
 		this.icon.setImageResource(resId);
 	}
 
+	/*
+	 * either returns the whole represented file
+	 * or throw an exception.. Should be used with
+	 * extreme caution.
+	 */
+	public File getFullFile() {
+		if (file == null) {
+			throw new NullPointerException("getFullFile called before setFile");
+		} else {
+			return file;
+		}
+	}
+
 	public void setFile(File file) {
 		setFileName(file.getName());
 		setMetadata(getMetadataText(file));
-		resetPicture(file);
+		this.file = file;
 	}
 
 	/*
@@ -82,8 +99,7 @@ public class FileListItemView extends RelativeLayout {
 		if (thisFile.isDirectory()) {
 			this.setIcon(R.drawable.directory_icon);
 		} else {
-			PictureGenerator generator = new PictureGenerator(thisFile);
-			generator.addIconAsync(icon);
+			PictureGenerator.addIconsAsync(new FileListItemView[] {this});
 		}
 	}
 
