@@ -50,7 +50,12 @@ class PictureGenerator {
 				view.post(new Runnable() {
 					@Override
 					public void run() {
-						view.setImageBitmap(icon);
+						if (icon == null) {
+							//the icon was not loaded here
+							view.setImageResource(R.drawable.file_icon);
+						} else {
+							view.setImageBitmap(icon);
+						}
 					}
 				});
 			}
