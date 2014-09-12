@@ -4,7 +4,8 @@ Usage:
 
 FileListView:
 
-This is a simple adaptation of the basic Android ListView to work as a file explorer. If you wish to heavily customise the UI of your file then this is probably what you should use.
+This is a simple adaptation of the basic Android ListView to work as a file explorer. If you wish to heavily customise the UI of your file then this is probably what you should use. Currently, the view just offers a single onFileSelect listener, icons for directories/unrecognised files/.jpgs and .png files get a little icon from their own image.
+
 
 Important Fields: 
 
@@ -53,3 +54,4 @@ Contributing:
 Current Todo List:
     More Documentation (both in this file and around each method)
     File options -- possibly a context menu to open on long press of FileListViewItem to enable things like copying, moving, renaming etc..
+    Icon loading - Still far to slow for my liking. Anything that can be done to speed it up would be greatly appreciated.
