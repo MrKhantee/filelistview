@@ -1,4 +1,6 @@
-package com.jcw.andriod.fileListView;/*
+package com.jcw.andriod.fileListView;
+
+/*
  * Author - Woodruff
  * 
  */
@@ -44,6 +46,9 @@ public class FileListItemView extends RelativeLayout {
 		fileName = (TextView)findViewById(R.id.fileName);
 		metadata = (TextView)findViewById(R.id.metaInfo);
 		icon = (ImageView)findViewById(R.id.icon);
+
+		icon.setMinimumHeight(32);
+		icon.setMinimumWidth(32);
 	}
 
 	/*
@@ -98,7 +103,7 @@ public class FileListItemView extends RelativeLayout {
 	public void resetPicture(File thisFile) {
 		if (thisFile.isDirectory()) {
 			this.setIcon(R.drawable.directory_icon);
-		} else if (getRepresentedDir().toString().equals("...")) {
+		} else if (getRepresentedDir().equals("...")) {
 			this.setIcon(R.drawable.directory_up);
 		} else {
 			PictureGenerator generator = new PictureGenerator(this.file);
