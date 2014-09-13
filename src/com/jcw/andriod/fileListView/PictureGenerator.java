@@ -11,7 +11,6 @@ package com.jcw.andriod.fileListView;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.DeadObjectException;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -134,7 +133,7 @@ class PictureGenerator {
 				BitmapFactory.Options options = new BitmapFactory.Options();
 				options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 				Bitmap fullSized = BitmapFactory.decodeFile(file.toString(), options);
-				Bitmap resized = Bitmap.createScaledBitmap(fullSized, 64, 64, true);
+				Bitmap resized = Bitmap.createScaledBitmap(fullSized, 32, 32, true);
 				fullSized.recycle();
 				return resized;
 			} catch (Exception e) {
