@@ -53,7 +53,7 @@ class PictureGenerator {
 			@Override
 			public void run() {
 				final Bitmap icon = getIcon();
-				view.post(new Runnable() {
+				view.getHandler().post(new Runnable() {
 					@Override
 					public void run() {
 						if (icon == null) {
