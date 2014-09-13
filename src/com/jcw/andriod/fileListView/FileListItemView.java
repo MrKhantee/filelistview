@@ -111,6 +111,14 @@ public class FileListItemView extends RelativeLayout {
 		}
 	}
 
+	@Override
+	public void onAttachedToWindow() {
+		//now attached to window so we can
+		//refresh the icon
+		super.onAttachedToWindow();
+		this.resetPicture(getFullFile());
+	}
+
 
 	/*
 	returns by default the size of the file if the
