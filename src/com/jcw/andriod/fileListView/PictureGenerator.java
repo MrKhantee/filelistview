@@ -121,12 +121,18 @@ class PictureGenerator {
 		}
 
 		private Bitmap getPictureIcon(File file) {
-			BitmapFactory.Options options = new BitmapFactory.Options();
-			options.inPreferredConfig = Bitmap.Config.ARGB_8888;
-			Bitmap fullSized = BitmapFactory.decodeFile(file.toString(), options);
-			Bitmap resized = Bitmap.createScaledBitmap(fullSized, 64, 64, true);
-			fullSized.recycle();
-			return resized;
+			try {
+				BitmapFactory.Options options = new BitmapFactory.Options();
+				options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+				Bitmap fullSized = BitmapFactory.decodeFile(file.toString(), options);
+				Bitmap resized = Bitmap.createScaledBitmap(fullSized, 64, 64, true);
+				fullSized.recycle();
+				return resized;
+			} catch (Exception e) {
+				//This can happen if there is an improperly formatted png/jpg file
+				//i.e. if someone changed the extension of a file name by accident
+				return null;
+			}
 		}
 
 		public static FileExtension createExtension(String extension) {
