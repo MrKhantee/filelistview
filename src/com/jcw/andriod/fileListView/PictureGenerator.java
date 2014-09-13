@@ -54,21 +54,24 @@ class PictureGenerator {
 			@Override
 			public void run() {
 				final Bitmap icon = getIcon();
-				try {
-					view.getHandler().post(new Runnable() {
-						@Override
-						public void run() {
-							if (icon == null) {
-								//the icon was not loaded here
-								view.setImageResource(R.drawable.file_icon);
-							} else {
-								view.setImageBitmap(icon);
-							}
+				Runnable setImageRunnable = new Runnable() {
+					@Override
+					public void run() {
+						if (icon == null) {
+							//the icon was not loaded here
+							view.setImageResource(R.drawable.file_icon);
+						} else {
+							view.setImageBitmap(icon);
 						}
-					});
+					}
+				};
+				
+				try {
+					view.getHandler().post(setImageRunnable);
 				} catch (Exception e) {
 					//this is really trying to catch a dead object
 					//exception, which means that the view is already destroyed
+					view.post(setImageRunnable)
 				}
 			}
 		});
