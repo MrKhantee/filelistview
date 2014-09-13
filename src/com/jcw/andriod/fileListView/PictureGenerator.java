@@ -49,18 +49,24 @@ class PictureGenerator {
 	 * EXTREME CAUTION
 	 */
 	protected void addIconAsync(final ImageView view) {
-		final Bitmap icon = getIcon();
-		view.post(new Runnable() {
+		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				if (icon == null) {
-					//the icon was not loaded here
-					view.setImageResource(R.drawable.file_icon);
-				} else {
-					view.setImageBitmap(icon);
-				}
+				final Bitmap icon = getIcon();
+				view.post(new Runnable() {
+					@Override
+					public void run() {
+						if (icon == null) {
+							//the icon was not loaded here
+							view.setImageResource(R.drawable.file_icon);
+						} else {
+							view.setImageBitmap(icon);
+						}
+					}
+				});
 			}
 		});
+		thread.start();
 	}
 
 	/*

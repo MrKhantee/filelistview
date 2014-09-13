@@ -101,8 +101,8 @@ public class FileListItemView extends RelativeLayout {
 		} else if (getRepresentedDir().toString().equals("...")) {
 			this.setIcon(R.drawable.directory_up);
 		} else {
-				PictureGenerator generator = new PictureGenerator(this.file);
-				generator.addIconAsync(this.icon);
+			PictureGenerator generator = new PictureGenerator(this.file);
+			generator.addIconAsync(this.icon);
 		}
 	}
 
