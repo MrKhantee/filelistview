@@ -11,6 +11,7 @@ package com.jcw.andriod.fileListView;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.DeadObjectException;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -53,17 +54,22 @@ class PictureGenerator {
 			@Override
 			public void run() {
 				final Bitmap icon = getIcon();
-				view.getHandler().post(new Runnable() {
-					@Override
-					public void run() {
-						if (icon == null) {
-							//the icon was not loaded here
-							view.setImageResource(R.drawable.file_icon);
-						} else {
-							view.setImageBitmap(icon);
+				try {
+					view.getHandler().post(new Runnable() {
+						@Override
+						public void run() {
+							if (icon == null) {
+								//the icon was not loaded here
+								view.setImageResource(R.drawable.file_icon);
+							} else {
+								view.setImageBitmap(icon);
+							}
 						}
-					}
-				});
+					});
+				} catch (Exception e) {
+					//this is really trying to catch a dead object
+					//exception, which means that the view is already destroyed
+				}
 			}
 		});
 		thread.start();
