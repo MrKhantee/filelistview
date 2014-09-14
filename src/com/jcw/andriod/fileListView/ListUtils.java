@@ -30,7 +30,7 @@ public class ListUtils {
         List<File> filteredFiles = new ArrayList<File>();
         for (File file : files) {
             for (String extension : extensions) {
-                if (file.getName().endsWith(extension)) {
+                if (file.getName().endsWith(extension) || file.isDirectory()) {
                     filteredFiles.add(file);
                     break;
                 }
