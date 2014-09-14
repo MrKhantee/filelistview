@@ -11,16 +11,17 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.*;
 import android.os.*;
+
 import java.io.*;
 import java.util.*;
 
 public class MainActivity extends Activity {
-	@Override
-	public void onCreate(Bundle savedInstance) {
-		super.onCreate(savedInstance);
-		setTheme(android.R.style.Theme_Holo_Light);
-		File parentDir = Environment.getExternalStorageDirectory();
-		Log.i("Files", Arrays.asList(FileUtils.listDirectories(parentDir)).toString());
-		setContentView(new FileSaveView(getApplicationContext()));
-	}
+    @Override
+    public void onCreate(Bundle savedInstance) {
+        super.onCreate(savedInstance);
+        setTheme(android.R.style.Theme_Holo_Light);
+        File parentDir = Environment.getExternalStorageDirectory();
+        Log.i("Files", Arrays.asList(FileUtils.listDirectories(parentDir)).toString());
+        setContentView(new FileSaveView(getApplicationContext()));
+    }
 }

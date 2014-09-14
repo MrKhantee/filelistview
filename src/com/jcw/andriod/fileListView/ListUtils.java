@@ -19,99 +19,99 @@ import java.util.*;
 
 public class ListUtils {
 
-	//takes a list of files and a list of
-	//accepted file types and filers them accordingly
-	//returns the input list on empty input
-	public static File[] filterExtensions(File[] files, String[] extensions) {
-		//if there are no extensions passed, then all should be okay
-		if (extensions.length == 0)
-			return files;
+    //takes a list of files and a list of
+    //accepted file types and filers them accordingly
+    //returns the input list on empty input
+    public static File[] filterExtensions(File[] files, String[] extensions) {
+        //if there are no extensions passed, then all should be okay
+        if (extensions.length == 0)
+            return files;
 
-		List<File> filteredFiles = new ArrayList<File>();
-		for (File file : files) {
-			for (String extension : extensions) {
-				if (file.getName().endsWith(extension)) {
-					filteredFiles.add(file);
-					break;
-				}
-			}
-		}
-		return filteredFiles.toArray(new File[0]);
-	}
+        List<File> filteredFiles = new ArrayList<File>();
+        for (File file : files) {
+            for (String extension : extensions) {
+                if (file.getName().endsWith(extension)) {
+                    filteredFiles.add(file);
+                    break;
+                }
+            }
+        }
+        return filteredFiles.toArray(new File[0]);
+    }
 
-	//returns the same list on an empty input
-	public static File[] search(File[] files, String phrase) {
-		if (phrase.equals("")) {
-			return files;
-		}
+    //returns the same list on an empty input
+    public static File[] search(File[] files, String phrase) {
+        if (phrase.equals("")) {
+            return files;
+        }
 
-		List<File> searchedFiles = new ArrayList<File>();
-		for (File file: files) {
-			if (file.getName().contains(phrase)) {
-				searchedFiles.add(file);
-			}
-		}
-		return searchedFiles.toArray(new File[0]);
-	}
+        List<File> searchedFiles = new ArrayList<File>();
+        for (File file : files) {
+            if (file.getName().contains(phrase)) {
+                searchedFiles.add(file);
+            }
+        }
+        return searchedFiles.toArray(new File[0]);
+    }
 
-	public static File[] sortByName(File[] files) {
-		//make a clone of the file list in case
-		//someone wants to keep the same base list
-		File[] fileClone = files.clone();
-		Comparator<File> comparator = new Comparator<File>() {
-			@Override
-			public int compare(File file, File file2) {
-				return file.getName().compareTo(file2.getName());
-			}
-		};
-		Arrays.sort(fileClone, comparator);
-		return fileClone;
-	}
+    public static File[] sortByName(File[] files) {
+        //make a clone of the file list in case
+        //someone wants to keep the same base list
+        File[] fileClone = files.clone();
+        Comparator<File> comparator = new Comparator<File>() {
+            @Override
+            public int compare(File file, File file2) {
+                return file.getName().compareTo(file2.getName());
+            }
+        };
+        Arrays.sort(fileClone, comparator);
+        return fileClone;
+    }
 
-	public static File[] directoriesOnly(File[] files, boolean directoriesOnly) {
-		if (!directoriesOnly)
-			return files;
-		
-		List<File> results = new ArrayList<File>();
-		for (File file : files) {
-			if (file.isDirectory()) {
-				results.add(file);
-			}
-		}
-		return results.toArray(new File[0]);
-	}
+    public static File[] directoriesOnly(File[] files, boolean directoriesOnly) {
+        if (!directoriesOnly)
+            return files;
 
-	public static File[] sortByDate(File[] files) {
-		//also clone the file here, for the same reason described above
-		File[] filesClone = files.clone();
-		Comparator<File> comparator = new Comparator<File>() {
-			@Override
-			public int compare(File file, File file2) {
-				return file.lastModified() > file2.lastModified() ? 1 : -1;
-			}
-		};
-		Arrays.sort(filesClone, comparator);
-		return filesClone;
-	}
+        List<File> results = new ArrayList<File>();
+        for (File file : files) {
+            if (file.isDirectory()) {
+                results.add(file);
+            }
+        }
+        return results.toArray(new File[0]);
+    }
 
-	public static File[] sortNewestOldest(File[] files) {
-		List<File> tempList = Arrays.asList(sortByDate(files.clone()));
-		Collections.reverse(tempList);
-		return tempList.toArray(new File[0]);
-	}
-	
-	public static File[] join(File[] f1, File[] f2) {
-		File[] result = new File[f1.length + f2.length];
-		List<File> combined = new ArrayList<File>();
-		
-		for (File file : f1) {
-			combined.add(file);
-		}
-		for (File file : f2) {
-			combined.add(file);
-		}
-		combined.toArray(result);
-		return result;
-	}
+    public static File[] sortByDate(File[] files) {
+        //also clone the file here, for the same reason described above
+        File[] filesClone = files.clone();
+        Comparator<File> comparator = new Comparator<File>() {
+            @Override
+            public int compare(File file, File file2) {
+                return file.lastModified() > file2.lastModified() ? 1 : -1;
+            }
+        };
+        Arrays.sort(filesClone, comparator);
+        return filesClone;
+    }
+
+    public static File[] sortNewestOldest(File[] files) {
+        List<File> tempList = Arrays.asList(sortByDate(files.clone()));
+        Collections.reverse(tempList);
+        return tempList.toArray(new File[0]);
+    }
+
+    public static File[] join(File[] f1, File[] f2) {
+        File[] result = new File[f1.length + f2.length];
+        List<File> combined = new ArrayList<File>();
+
+        for (File file : f1) {
+            combined.add(file);
+        }
+        for (File file : f2) {
+            combined.add(file);
+        }
+        combined.toArray(result);
+        return result;
+    }
 }
 

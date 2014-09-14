@@ -21,122 +21,124 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 
+import com.jcw.android.fileListView.R;
+
 import java.io.File;
 
 public class FileOpenView extends RelativeLayout {
-	private FileListView.FileSelectListener listener;
+    private FileListView.FileSelectListener listener;
 
-	//when disabled, the search bar will be hidden
-	public boolean searchEnabled = true;
+    //when disabled, the search bar will be hidden
+    public boolean searchEnabled = true;
 
-	//when true, folder selection will be enabled.
-	//This adds a button to the top of the view
-	//the select the current folder
-	public boolean folderSelectMode = false;
+    //when true, folder selection will be enabled.
+    //This adds a button to the top of the view
+    //the select the current folder
+    public boolean folderSelectMode = false;
 
-	//edittext for searching through the current displayed files
-	public EditText search;
-	//button for selecting the current folder
-	public Button folderSelect;
-	//the file view. Public so changes
-	//can be made to it (sorting order etc..)
-	public FileListView listView;
+    //edittext for searching through the current displayed files
+    public EditText search;
+    //button for selecting the current folder
+    public Button folderSelect;
+    //the file view. Public so changes
+    //can be made to it (sorting order etc..)
+    public FileListView listView;
 
-	public FileOpenView(Context context) {
-		super(context);
-		init();
-	}
+    public FileOpenView(Context context) {
+        super(context);
+        init();
+    }
 
-	public FileOpenView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-		init();
-	}
+    public FileOpenView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        init();
+    }
 
-	public FileOpenView(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
-		init();
-	}
+    public FileOpenView(Context context, AttributeSet attrs, int defStyle) {
+        super(context, attrs, defStyle);
+        init();
+    }
 
-	protected void init() {
-		LayoutInflater inflater = LayoutInflater.from(getContext());
-		inflater.inflate(R.layout.file_open_view, FileOpenView.this);
+    protected void init() {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        inflater.inflate(R.layout.file_open_view, FileOpenView.this);
 
-		search = (EditText)findViewById(R.id.searchBar);
-		folderSelect = (Button)findViewById(R.id.folderSelectButton);
-		listView = (FileListView)findViewById(R.id.fileListView);
+        search = (EditText) findViewById(R.id.searchBar);
+        folderSelect = (Button) findViewById(R.id.folderSelectButton);
+        listView = (FileListView) findViewById(R.id.fileListView);
 
-		//set the visibility of the button and search bar to default
-		setSearchEnabled(searchEnabled);
-		setFolderSelectEnabled(folderSelectMode);
+        //set the visibility of the button and search bar to default
+        setSearchEnabled(searchEnabled);
+        setFolderSelectEnabled(folderSelectMode);
 
-		setListeners();
-	}
+        setListeners();
+    }
 
-	protected void setListeners() {
-		listView.setFileSelectedListener(new FileListView.FileSelectListener() {
-			@Override
-			public void fileSelected(File selected) {
-				if (listener != null) {
-					listener.fileSelected(selected);
-				}
-			}
-		});
+    protected void setListeners() {
+        listView.setFileSelectedListener(new FileListView.FileSelectListener() {
+            @Override
+            public void fileSelected(File selected) {
+                if (listener != null) {
+                    listener.fileSelected(selected);
+                }
+            }
+        });
 
-		folderSelect.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				if (listener != null) {
-					listener.fileSelected(listView.baseDirectory);
-				}
-			}
-		});
+        folderSelect.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (listener != null) {
+                    listener.fileSelected(listView.baseDirectory);
+                }
+            }
+        });
 
-		search.addTextChangedListener(new TextWatcher() {
-			@Override
-			public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {
 
-			}
+            }
 
-			@Override
-			public void onTextChanged(CharSequence text, int i, int i2, int i3) {
-				//maybe put the searching in here for more real time updating
-			}
+            @Override
+            public void onTextChanged(CharSequence text, int i, int i2, int i3) {
+                //maybe put the searching in here for more real time updating
+            }
 
-			@Override
-			public void afterTextChanged(Editable editable) {
-				listView.searchText = editable.toString();
-				listView.refresh();
-			}
-		});
-	}
+            @Override
+            public void afterTextChanged(Editable editable) {
+                listView.searchText = editable.toString();
+                listView.refresh();
+            }
+        });
+    }
 
-	public void setSearchEnabled(boolean enabled) {
-		this.searchEnabled = enabled;
-		//clear the search text
-		listView.searchText = "";
-		//set the visibility as required
-		if (enabled) {
-			search.setVisibility(View.VISIBLE);
-		} else {
-			search.setVisibility(View.GONE);
-		}
-		listView.refresh();
-	}
+    public void setSearchEnabled(boolean enabled) {
+        this.searchEnabled = enabled;
+        //clear the search text
+        listView.searchText = "";
+        //set the visibility as required
+        if (enabled) {
+            search.setVisibility(View.VISIBLE);
+        } else {
+            search.setVisibility(View.GONE);
+        }
+        listView.refresh();
+    }
 
-	public void setFolderSelectEnabled(boolean enabled) {
-		this.folderSelectMode = enabled;
-		//change whether files are shown
-		listView.setDirectoriesOnly(folderSelectMode);
-		//reset visibility
-		if (enabled) {
-			folderSelect.setVisibility(View.VISIBLE);
-		} else {
-			folderSelect.setVisibility(View.GONE);
-		}
-		listView.refresh();
-	}
+    public void setFolderSelectEnabled(boolean enabled) {
+        this.folderSelectMode = enabled;
+        //change whether files are shown
+        listView.setDirectoriesOnly(folderSelectMode);
+        //reset visibility
+        if (enabled) {
+            folderSelect.setVisibility(View.VISIBLE);
+        } else {
+            folderSelect.setVisibility(View.GONE);
+        }
+        listView.refresh();
+    }
 
-	public void setFileSelectedListener(FileListView.FileSelectListener listener) {
-		this.listener = listener;
-	}
+    public void setFileSelectedListener(FileListView.FileSelectListener listener) {
+        this.listener = listener;
+    }
 }
