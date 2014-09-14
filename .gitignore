@@ -8,4 +8,5 @@ bin/
 out/
 project.properties
 proguard-project.txt
+local.properties
 *.properties
