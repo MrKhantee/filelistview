@@ -1,7 +1,5 @@
 This is a file selecting list view for Android, a few other views are also included to make the use of the library easier.
 
-Usage:
-
 FileListView:
 
 This is a simple adaptation of the basic Android ListView to work as a file explorer. If you wish to heavily customise the UI of your file then this is probably what you should use. Currently, the view just offers a single onFileSelect listener, icons for directories/unrecognised files/.jpgs and .png files get a little icon from their own image.
@@ -47,6 +45,29 @@ Important Fields:
     
    - setFolderSelectEnabled(boolean enabled - throws a NoSuchMethodException -- do not use
         
+Usage Examples:
+    To use this project, you must add the resources in the res/ folder of this project to your own /res folder. This will enable this project to use the resources it needs.
+    Example use (in a dialog):
+    
+        AlertDialog.Builder b = new AlertDialog.Builder(getContext());
+        b.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface d) {}
+        });
+        
+        FileListView fileListView = new FileListView(getContext());
+        fileListView.setExtensions(new String[] { "jpg, png, jpeg" });
+        b.setView(fileListView);
+        final AlertDialog d = b.show();
+        
+        fileListView.setFileSelectedListener(new FileListView.FileSelectedListener() {
+            onSelected(File selected) {
+                //do something with the file
+                d.dismiss();
+             }
+        });
+        
+
+
 
 Contributing:
     I will eagerly welcome all contributions, if you are looking for something to contribute to, see the todo list below.
