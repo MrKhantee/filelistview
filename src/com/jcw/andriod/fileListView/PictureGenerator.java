@@ -21,6 +21,8 @@ class PictureGenerator {
     File file;
     FileExtension extension;
 
+	public static final int ICON_SIZE = 64;
+
 
     public PictureGenerator(File file) {
         this.file = file;
@@ -135,7 +137,7 @@ class PictureGenerator {
                 BitmapFactory.Options options = new BitmapFactory.Options();
                 options.inPreferredConfig = Bitmap.Config.ARGB_8888;
                 Bitmap fullSized = BitmapFactory.decodeFile(file.toString(), options);
-                Bitmap resized = Bitmap.createScaledBitmap(fullSized, 32, 32, true);
+                Bitmap resized = Bitmap.createScaledBitmap(fullSized, ICON_SIZE, ICON_SIZE, true);
                 fullSized.recycle();
                 return resized;
             } catch (Exception e) {

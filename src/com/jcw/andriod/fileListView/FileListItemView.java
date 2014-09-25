@@ -49,8 +49,8 @@ public class FileListItemView extends RelativeLayout {
         metadata = (TextView) findViewById(R.id.metaInfo);
         icon = (ImageView) findViewById(R.id.icon);
 
-        icon.setMinimumHeight(32);
-        icon.setMinimumWidth(32);
+        icon.setMinimumHeight(PictureGenerator.ICON_SIZE);
+        icon.setMinimumWidth(PictureGenerator.ICON_SIZE);
     }
 
     /*
