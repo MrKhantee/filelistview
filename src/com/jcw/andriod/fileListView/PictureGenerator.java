@@ -106,6 +106,9 @@ class PictureGenerator {
 	}
 
 	private enum FileExtension {
+		//IMPORTANT NOTE
+		//if you add something here, you also have to add it to the
+		//getIcon and createExtension methods
 		JPG(".jpg"),
 		PNG(".png"),
 		MP3(".MP3"),
@@ -159,6 +162,8 @@ class PictureGenerator {
 				return JPG;
 			} else if (s.equals("png")) {
 				return PNG;
+			} else if (s.equals("mp3")) {
+				return MP3;
 			} else {
 				return Other;
 			}
