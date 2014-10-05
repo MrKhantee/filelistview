@@ -22,6 +22,8 @@ class PictureGenerator {
 	File file;
 	FileExtension extension;
 
+	public static final int ICON_SIZE = 64;
+
 
 	public PictureGenerator(File file) {
 		this.file = file;
