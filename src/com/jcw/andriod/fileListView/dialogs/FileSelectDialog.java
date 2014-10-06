@@ -10,6 +10,8 @@ package com.jcw.andriod.fileListView.dialogs;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import com.jcw.andriod.fileListView.FileListView;
@@ -49,7 +51,20 @@ public abstract class FileSelectDialog extends AlertDialog.Builder {
 			}
 		});
 
-		//todo -- intitalize the search edittext
+		searchEditText = new EditText(getContext());
+		searchEditText.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void beforeTextChanged(CharSequence charSequence, int i, int i2, int i3) {}
+
+			@Override
+			public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {}
+
+			@Override
+			public void afterTextChanged(Editable editable) {
+				listView.searchWith(editable.toString());
+				listView.refresh();
+			}
+		});
 	}
 
 	public void setSearchEnabled(boolean enabled) {
