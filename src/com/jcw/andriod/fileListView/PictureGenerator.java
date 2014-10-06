@@ -1,7 +1,7 @@
 package com.jcw.andriod.fileListView;
 
 /*
- * Created by Jackson Woodruff on 12/09/2014 
+ * Created by Jackson Woodruff on 12/09/2014
  *
  *
  * This is a protected class that is used
@@ -9,15 +9,20 @@ package com.jcw.andriod.fileListView;
  * for certain types of file.
  */
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.widget.ImageView;
+
+import com.jcw.android.fileListView.R;
 
 import java.io.File;
 
 class PictureGenerator {
 	File file;
 	FileExtension extension;
+
+	public static final int ICON_SIZE = 64;
 
 
 	public PictureGenerator(File file) {
@@ -33,8 +38,8 @@ class PictureGenerator {
 	 * picture into memory then trims
 	 * it.
 	 */
-	public Bitmap getIcon() {
-		return extension.getIcon(this.file);
+	public Bitmap getIcon(Context context) {
+		return extension.getIcon(context, this.file);
 	}
 
 	/*
@@ -52,7 +57,7 @@ class PictureGenerator {
 		Thread thread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				final Bitmap icon = getIcon();
+				final Bitmap icon = getIcon(view.getContext());
 				Runnable setImageRunnable = new Runnable() {
 					@Override
 					public void run() {
@@ -103,8 +108,12 @@ class PictureGenerator {
 	}
 
 	private enum FileExtension {
+		//IMPORTANT NOTE
+		//if you add something here, you also have to add it to the
+		//getIcon and createExtension methods
 		JPG(".jpg"),
 		PNG(".png"),
+		MP3(".MP3"),
 		Other("");
 
 		protected String extension;
@@ -117,15 +126,21 @@ class PictureGenerator {
 		 * returns a bitmap in 64x64 format
 		 * of the passed picture
 		 */
-		public Bitmap getIcon(File file) {
+		public Bitmap getIcon(Context context, File file) {
 			switch (this) {
 				case PNG:
 				case JPG:
 					return getPictureIcon(file);
+				case MP3:
+					return getPictureFromResource(context, R.drawable.mp3_icon);
 				case Other:
 					return null;
 			}
 			return null;
+		}
+
+		private Bitmap getPictureFromResource(Context context, int resId) {
+			return BitmapFactory.decodeResource(context.getResources(), resId);
 		}
 
 		private Bitmap getPictureIcon(File file) {
@@ -133,7 +148,7 @@ class PictureGenerator {
 				BitmapFactory.Options options = new BitmapFactory.Options();
 				options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 				Bitmap fullSized = BitmapFactory.decodeFile(file.toString(), options);
-				Bitmap resized = Bitmap.createScaledBitmap(fullSized, 32, 32, true);
+				Bitmap resized = Bitmap.createScaledBitmap(fullSized, 64, 64, true);
 				fullSized.recycle();
 				return resized;
 			} catch (Exception e) {
@@ -149,6 +164,8 @@ class PictureGenerator {
 				return JPG;
 			} else if (s.equals("png")) {
 				return PNG;
+			} else if (s.equals("mp3")) {
+				return MP3;
 			} else {
 				return Other;
 			}

@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent">
-	<RelativeLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:id="@+id/container">
-		<Button
-			android:layout_width="wrap_content"
-			android:textSize="9dp"
-			android:layout_height="wrap_content"
-			android:id="@+id/folderSelectButton"
-			android:text="@string/selectFolder"
-			android:layout_alignParentRight="true"/>
-		<EditText
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:textSize="9dp"
-			android:id="@+id/searchBar"
-			android:hint="@string/search"
-			android:layout_toLeftOf="@id/folderSelectButton"/>
-	</RelativeLayout>
-	<com.jcw.andriod.fileListView.FileListView
-		android:layout_width="match_parent"
-		android:layout_height="match_parent"
-		android:layout_below="@id/container"
-		android:id="@+id/fileListView"
-	/>
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/container">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:textSize="9dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/folderSelectButton"
+            android:text="@string/selectFolder"
+            android:layout_alignParentRight="true" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="9dp"
+            android:id="@+id/searchBar"
+            android:hint="@string/search"
+            android:layout_toLeftOf="@id/folderSelectButton" />
+    </RelativeLayout>
+
+    <com.jcw.andriod.fileListView.FileListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/container"
+        android:id="@+id/fileListView" />
 </RelativeLayout>

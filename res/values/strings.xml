@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">FileListView</string>
-	<string name="selectFolder">Select Folder</string>
-	<string name="search">Search</string>
-	<string name="ok">Ok</string>
-	<string name="fileNeedsName">Filename cannot be empty</string>
-	<string name="fileName">Filename</string>
-	<string name="save">Save</string>
-	<string name="fileAlreadyExists">File Already Exists</string>
-	<string name="overwriteMessage">If you continue, all contents of this file will be lost</string>
-	<string name="overwrite">Overwrite</string>
-	<string name="cancel">Cancel</string>
+    <string name="app_name">FileListView</string>
+    <string name="selectFolder">Select Folder</string>
+    <string name="search">Search</string>
+    <string name="ok">Ok</string>
+    <string name="fileNeedsName">Filename cannot be empty</string>
+    <string name="fileName">Filename</string>
+    <string name="save">Save</string>
+    <string name="fileAlreadyExists">File Already Exists</string>
+    <string name="overwriteMessage">If you continue, all contents of this file will be lost</string>
+    <string name="overwrite">Overwrite</string>
+    <string name="cancel">Cancel</string>
 </resources>
