@@ -11,6 +11,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.*;
 import android.os.*;
+import android.widget.Toast;
+import com.jcw.andriod.fileListView.dialogs.FileSelectDialog;
 
 import java.io.*;
 import java.util.*;
@@ -23,5 +25,15 @@ public class MainActivity extends Activity {
         File parentDir = Environment.getExternalStorageDirectory();
         Log.i("Files", Arrays.asList(FileUtils.listDirectories(parentDir)).toString());
         setContentView(new FileSaveView(getApplicationContext()));
+
+		FileSelectDialog fileSelectDialog = new FileSelectDialog(getApplicationContext()) {
+			@Override
+			public void fileSelected(File selected) {
+				Toast.makeText(getContext(), "You selected: " + selected.toString(), Toast.LENGTH_LONG).show();
+			}
+		};
+
+		fileSelectDialog.setSearchEnabled(true);
+		fileSelectDialog.show();
     }
 }
