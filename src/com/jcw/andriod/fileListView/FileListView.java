@@ -131,6 +131,7 @@ public class FileListView extends ListView {
 
 	public void setExtensions(String[] extensions) {
 		this.fileExtensions = extensions;
+		refresh();
 	}
 
 	public void searchWith(String text) {
