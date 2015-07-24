@@ -114,6 +114,10 @@ class PictureGenerator {
 		JPG(".jpg"),
 		PNG(".png"),
 		MP3(".MP3"),
+		MP4(".MP4"),
+		AVI(".AVI"),
+		FLV(".FLV"),
+		MOV(".MOV"),
 		Other("");
 
 		protected String extension;
