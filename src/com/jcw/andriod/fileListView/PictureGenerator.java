@@ -24,7 +24,6 @@ class PictureGenerator {
 
 	public static final int ICON_SIZE = 64;
 
-
 	public PictureGenerator(File file) {
 		this.file = file;
 		extension = FileExtension.createExtension(getExtension());
@@ -44,14 +43,6 @@ class PictureGenerator {
 
 	/*
 	 * This MUST be called within a thread
-	 *
-	 * This is private because
-	 * if it is called many times at
-	 * once then you run into out
-	 * of memory errors
-	 *
-	 * Hence, this SHOULD BE USED WITH
-	 * EXTREME CAUTION
 	 */
 	protected void addIconAsync(final ImageView view) {
 		Thread thread = new Thread(new Runnable() {
@@ -147,7 +138,12 @@ class PictureGenerator {
 			return BitmapFactory.decodeResource(context.getResources(), resId);
 		}
 
-		private Bitmap getPictureIcon(File file) {
+		/* This method is synchronized as many calls can be generated to it
+		 * from a single view.  (All in parallel)  If that is done, then
+		 * we don't want to run out of memory loading a gazillion of these
+		 * bitmaps into memory.
+		 */
+		private synchronized Bitmap getPictureIcon(File file) {
 			try {
 				BitmapFactory.Options options = new BitmapFactory.Options();
 				options.inPreferredConfig = Bitmap.Config.ARGB_8888;
